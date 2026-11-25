@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --brand-bg: #0f0f1a;
+    --brand-charcoal: #1a1a2e;
+    --brand-surface: #16213e;
+    --brand-card: #1e1e36;
+    --brand-border: #2d2d4a;
+    --brand-text-primary: #e2e8f0;
+    --brand-text-secondary: #94a3b8;
+    --brand-purple: #7c3aed;
+    --brand-purple-hover: #8b5cf6;
+    --brand-blue: #3b82f6;
+    --brand-blue-hover: #60a5fa;
+    --brand-success: #22c55e;
+    --brand-error: #ef4444;
+    --brand-warning: #eab308;
+  }
+
+  body {
+    @apply bg-brand-bg text-brand-text-primary font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  * {
+    @apply border-brand-border;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-brand-card/80 backdrop-blur-xl border border-brand-border rounded-xl;
+  }
+
+  .gradient-purple {
+    @apply bg-gradient-to-r from-brand-purple to-brand-blue;
+  }
+
+  .gradient-purple-hover {
+    @apply bg-gradient-to-r from-brand-purple-hover to-brand-blue-hover;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent;
+  }
+
+  .input-base {
+    @apply w-full bg-brand-surface border border-brand-border rounded-lg px-4 py-2.5
+           text-brand-text-primary placeholder-brand-text-secondary/50
+           focus:outline-none focus:ring-2 focus:ring-brand-purple/50 focus:border-brand-purple
+           transition-all duration-200;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-brand-text-secondary
+           hover:text-brand-text-primary hover:bg-brand-surface/60 transition-all duration-200
+           cursor-pointer text-sm font-medium;
+  }
+
+  .sidebar-item-active {
+    @apply text-white bg-brand-purple/20 border-l-2 border-brand-purple;
+  }
+
+  .studio-panel {
+    @apply bg-brand-charcoal border border-brand-border rounded-xl overflow-hidden;
+  }
+
+  .panel-header {
+    @apply px-4 py-3 border-b border-brand-border bg-brand-surface/30 flex items-center justify-between;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-purple);
+}
+
+/* Selection */
+::selection {
+  background: rgba(124, 58, 237, 0.3);
+  color: #e2e8f0;
+}
+
+/* Khmer text support */
+.khmer-text {
+  font-family: 'Noto Sans Khmer', sans-serif;
+  line-height: 1.8;
+}
+
+/* Video player custom styles */
+.video-controls {
+  @apply bg-gradient-to-t from-black/90 to-transparent;
+}
+
+/* Timeline styles */
+.timeline-ruler {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--brand-border) 0px,
+    var(--brand-border) 1px,
+    transparent 1px,
+    transparent 100px
+  );
+}
+
+/* Waveform animation */
+@keyframes waveform-bar {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+.waveform-bar {
+  animation: waveform-bar 1.2s ease-in-out infinite;
+}
+
+/* Phase progress animation */
+@keyframes progress-pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.phase-processing {
+  animation: progress-pulse 1.5s ease-in-out infinite;
+}
